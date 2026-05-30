@@ -947,7 +947,7 @@ img{
 .form-input,
 .form-select,
 .form-textarea {
-    width: 100%;
+    width: 90%;
     padding: 11px 14px;
     border: 1.5px solid var(--gray-200);
     border-radius: var(--radius-md);
