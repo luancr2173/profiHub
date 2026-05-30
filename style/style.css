@@ -74,12 +74,11 @@ textarea {
 }
 
 .logo {
-    font-size: 22px;
-    font-weight: 600;
-    color: var(--blue);
-    display: flex;
-    align-items: center;
-    gap: 8px;
+    width: 20%;
+}
+
+img{
+    width: 100%;
 }
 
 .logo span {
