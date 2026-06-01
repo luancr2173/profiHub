@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ProfiHub — Encontre o profissional certo</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link rel="stylesheet" href="style/style.css" />
+</head>
+
+<body>
+
+  <nav class="navbar">
+    <div class="logo" onclick="location.href='index.html'" style="cursor:pointer">
+      <img src="assets/logo.png" alt="ProfiHub"
+        onerror="this.replaceWith(Object.assign(document.createElement('span'),{textContent:'ProfiHub',style:'font-size:20px;font-weight:700;color:#2563eb'}))">
+    </div>
+    <div class="nav-links" id="nav-links">
+      <a href="index.html" class="nav-btn active">Início</a>
+      <a href="busca.html" class="nav-btn">Buscar serviço</a>
+      <a href="cadastro.html" class="nav-btn">Seja um Pro</a>
+      <a href="login.html" class="nav-btn">Entrar</a>
+    </div>
+    <button class="nav-cta" onclick="location.href='cadastro.html'">Cadastrar grátis</button>
+    <button class="nav-mobile-btn" onclick="toggleMenu()" aria-label="Menu">
+      <i class="fa-solid fa-bars" id="menu-icon"></i>
+    </button>
+  </nav>
+
+  <div class="toast" id="toast">
+    <i class="fa-solid fa-circle-check"></i>
+    <span id="toast-msg">Mensagem</span>
+  </div>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-badge"><i class="fa-solid fa-bolt"></i> Mais de 2.000 profissionais cadastrados</div>
+    <h1>Encontre o <span>profissional certo</span><br>para o seu serviço</h1>
+    <p>Pintores, eletricistas, técnicos de ar-condicionado e muito mais. Conectamos você aos melhores autônomos da sua
+      região.</p>
+    <div class="hero-btns">
+      <button class="btn-primary" onclick="location.href='busca.html'">
+        <i class="fa-solid fa-magnifying-glass"></i> Buscar profissional
+      </button>
+      <button class="btn-outline" onclick="location.href='cadastro.html'">
+        <i class="fa-solid fa-user-plus"></i> Sou profissional
+      </button>
+    </div>
+    <div class="hero-stats">
+      <div class="stat-item">
+        <div class="stat-num">2.4k+</div>
+        <div class="stat-label">Profissionais</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">12k+</div>
+        <div class="stat-label">Serviços realizados</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">4.8</div>
+        <div class="stat-label">Avaliação média</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">30+</div>
+        <div class="stat-label">Categorias</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SEARCH -->
+  <section style="padding: 48px 0 0;">
+    <div class="search-section">
+      <div class="search-card">
+        <div class="search-card-title"><i class="fa-solid fa-magnifying-glass"></i> O que você precisa hoje?</div>
+        <div class="search-row">
+          <input type="text" id="home-search" placeholder="Ex: pintor, eletricista, encanador..." />
+          <select id="home-city">
+            <option value="">Toda cidade</option>
+            <option>Brasília - DF</option>
+            <option>Taguatinga</option>
+            <option>Ceilândia</option>
+            <option>Gama</option>
+          </select>
+          <button class="btn-search" onclick="doHomeSearch()">
+            <i class="fa-solid fa-search"></i> Buscar
+          </button>
+        </div>
+        <div class="cats-row">
+          <div class="cats-label">Categorias populares</div>
+          <div class="chips" id="home-chips">
+            <div class="chip active" onclick="filterHomeChip(this,'todos')"><i class="fa-solid fa-th"></i> Todos</div>
+            <div class="chip" onclick="filterHomeChip(this,'pintura')"><i class="fa-solid fa-paint-roller"></i> Pintura
+            </div>
+            <div class="chip" onclick="filterHomeChip(this,'eletrica')"><i class="fa-solid fa-bolt"></i> Elétrica</div>
+            <div class="chip" onclick="filterHomeChip(this,'hidro')"><i class="fa-solid fa-droplet"></i> Hidráulica
+            </div>
+            <div class="chip" onclick="filterHomeChip(this,'ar')"><i class="fa-solid fa-wind"></i> Ar-condicionado</div>
+            <div class="chip" onclick="filterHomeChip(this,'marcenaria')"><i class="fa-solid fa-hammer"></i> Marcenaria
+            </div>
+            <div class="chip" onclick="filterHomeChip(this,'limpeza')"><i class="fa-solid fa-broom"></i> Limpeza</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROFISSIONAIS EM DESTAQUE -->
+  <section class="section">
+    <div class="section-head">
+      <h2>Profissionais em destaque</h2>
+      <p>Avaliados e verificados pela nossa plataforma</p>
+    </div>
+    <div class="pros-grid" id="pros-grid"></div>
+  </section>
+
+  <!-- COMO FUNCIONA -->
+  <section class="how-section">
+    <div class="how-inner">
+      <h2>Como funciona</h2>
+      <p class="sub">Simples, rápido e seguro para clientes e profissionais</p>
+      <div class="how-steps">
+        <div class="how-step">
+          <div class="step-icon-wrap"><i class="fa-solid fa-magnifying-glass"></i></div>
+          <h4>Busque o serviço</h4>
+          <p>Digite o que precisa e filtre pela sua cidade ou bairro</p>
+        </div>
+        <div class="how-step">
+          <div class="step-icon-wrap"><i class="fa-solid fa-user-check"></i></div>
+          <h4>Escolha o profissional</h4>
+          <p>Veja perfis completos, avaliações de clientes e preços</p>
+        </div>
+        <div class="how-step">
+          <div class="step-icon-wrap"><i class="fa-solid fa-comments"></i></div>
+          <h4>Entre em contato</h4>
+          <p>Converse diretamente e combine os detalhes do serviço</p>
+        </div>
+        <div class="how-step">
+          <div class="step-icon-wrap"><i class="fa-solid fa-star"></i></div>
+          <h4>Avalie o serviço</h4>
+          <p>Compartilhe sua experiência e ajude outros clientes</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA PRO -->
+  <section class="cta-pro">
+    <h2>Você é profissional autônomo?</h2>
+    <p>Cadastre-se gratuitamente, crie seu perfil e comece a receber clientes na sua região hoje mesmo.</p>
+    <button class="btn-white" onclick="location.href='cadastro.html'">
+      <i class="fa-solid fa-rocket"></i> Criar meu perfil grátis
+    </button>
+  </section>
+
+  <footer class="footer">
+    <p>© 2025 <span>ProfiHub</span>. Todos os direitos reservados.<br />Desenvolvido para conectar pessoas.</p>
+  </footer>
+
+  <script src="script/script.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ProfiHub — Buscar Serviço</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link rel="stylesheet" href="style/style.css" />
+</head>
+
+<body>
+
+  <nav class="navbar">
+    <div class="logo" onclick="location.href='index.html'" style="cursor:pointer">
+      <img src="assets/logo.png" alt="ProfiHub"
+        onerror="this.replaceWith(Object.assign(document.createElement('span'),{textContent:'ProfiHub',style:'font-size:20px;font-weight:700;color:#2563eb'}))">
+    </div>
+    <div class="nav-links" id="nav-links">
+      <a href="index.html" class="nav-btn">Início</a>
+      <a href="busca.html" class="nav-btn active">Buscar serviço</a>
+      <a href="cadastro.html" class="nav-btn">Seja um Pro</a>
+      <a href="login.html" class="nav-btn">Entrar</a>
+    </div>
+    <button class="nav-cta" onclick="location.href='cadastro.html'">Cadastrar grátis</button>
+    <button class="nav-mobile-btn" onclick="toggleMenu()" aria-label="Menu">
+      <i class="fa-solid fa-bars" id="menu-icon"></i>
+    </button>
+  </nav>
+
+  <div class="toast" id="toast">
+    <i class="fa-solid fa-circle-check"></i>
+    <span id="toast-msg">Mensagem</span>
+  </div>
+
+  <div class="busca-page">
+    <div class="busca-header">
+      <h2>Buscar profissionais</h2>
+      <p>Encontre o especialista certo para o seu serviço</p>
+    </div>
+    <div class="busca-controls">
+      <input type="text" id="busca-input" placeholder="Buscar por serviço ou nome..." oninput="filterResults()" />
+      <select id="busca-city" onchange="filterResults()">
+        <option value="">Toda cidade</option>
+        <option>Brasília - DF</option>
+        <option>Taguatinga</option>
+        <option>Ceilândia</option>
+        <option>Gama</option>
+      </select>
+      <select id="busca-cat" onchange="filterResults()">
+        <option value="">Todas categorias</option>
+        <option>Pintura</option>
+        <option>Elétrica</option>
+        <option>Hidráulica</option>
+        <option>Ar-condicionado</option>
+        <option>Marcenaria</option>
+        <option>Limpeza</option>
+      </select>
+    </div>
+    <div class="sort-bar">
+      <span class="sort-label">Ordenar:</span>
+      <div class="sort-chip active" onclick="setSort(this,'avaliacao')"><i class="fa-solid fa-star"></i> Melhor
+        avaliados</div>
+      <div class="sort-chip" onclick="setSort(this,'preco')"><i class="fa-solid fa-arrow-trend-up"></i> Menor preço
+      </div>
+      <div class="sort-chip" onclick="setSort(this,'disponivel')"><i class="fa-solid fa-clock"></i> Disponível agora
+      </div>
+    </div>
+    <div class="results-count" id="results-count">Carregando...</div>
+    <div class="results-list" id="results-list"></div>
+  </div>
+
+  <script src="script/script.js"></script>
+
+</body>
+
+</html>

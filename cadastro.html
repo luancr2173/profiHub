@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ProfiHub — Seja um Pro</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link rel="stylesheet" href="style/style.css" />
+</head>
+
+<body>
+
+  <nav class="navbar">
+    <div class="logo" onclick="location.href='index.html'" style="cursor:pointer">
+      <img src="assets/logo.png" alt="ProfiHub"
+        onerror="this.replaceWith(Object.assign(document.createElement('span'),{textContent:'ProfiHub',style:'font-size:20px;font-weight:700;color:#2563eb'}))">
+    </div>
+
+    <div class="nav-links" id="nav-links">
+      <a href="index.html" class="nav-btn">Início</a>
+      <a href="busca.html" class="nav-btn">Buscar serviço</a>
+      <a href="cadastro.html" class="nav-btn active">Seja um Pro</a>
+      <a href="login.html" class="nav-btn">Entrar</a>
+    </div>
+
+    <button class="nav-cta" onclick="location.href='cadastro.html'">Cadastrar grátis</button>
+    <button class="nav-mobile-btn" onclick="toggleMenu()" aria-label="Menu">
+      <i class="fa-solid fa-bars" id="menu-icon"></i>
+    </button>
+  </nav>
+
+  <div class="toast" id="toast">
+    <i class="fa-solid fa-circle-check"></i>
+    <span id="toast-msg">Mensagem</span>
+  </div>
+
+  <!-- STEP 1 -->
+  <div id="cad-s1" class="cad-page">
+    <div class="progress-bar">
+      <div class="pb-step">
+        <div class="pb-circle curr">1</div>
+        <div class="pb-label curr">Dados</div>
+      </div>
+      <div class="pb-line"></div>
+      <div class="pb-step">
+        <div class="pb-circle">2</div>
+        <div class="pb-label">Serviços</div>
+      </div>
+      <div class="pb-line"></div>
+      <div class="pb-step">
+        <div class="pb-circle">3</div>
+        <div class="pb-label">Perfil</div>
+      </div>
+    </div>
+    <div class="form-card">
+      <div class="form-title">Crie sua conta de profissional</div>
+      <div class="form-sub">Preencha seus dados para começar a receber clientes</div>
+      <div class="form-row">
+        <div class="form-group">
+          <label class="form-label">Nome *</label>
+          <input type="text" class="form-input" placeholder="Seu nome" id="f-nome" />
+        </div>
+        <div class="form-group">
+          <label class="form-label">Sobrenome *</label>
+          <input type="text" class="form-input" placeholder="Sobrenome" id="f-sobrenome" />
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="form-label">E-mail *</label>
+        <input type="email" class="form-input" placeholder="seu@email.com" id="f-email" />
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label class="form-label">WhatsApp *</label>
+          <input type="tel" class="form-input" placeholder="(61) 99999-9999" id="f-tel" />
+        </div>
+        <div class="form-group">
+          <label class="form-label">CPF *</label>
+          <input type="text" class="form-input" placeholder="000.000.000-00" id="f-cpf" />
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label class="form-label">Cidade *</label>
+          <select class="form-select" id="f-cidade">
+            <option value="">Selecione...</option>
+            <option>Brasília - DF</option>
+            <option>Taguatinga</option>
+            <option>Ceilândia</option>
+            <option>Gama</option>
+            <option>Samambaia</option>
+            <option>Outra</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Senha *</label>
+          <input type="password" class="form-input" placeholder="Mínimo 8 caracteres" id="f-senha" />
+        </div>
+      </div>
+      <div class="form-actions">
+        <button class="btn-next" onclick="goStep(2)" style="flex:1">
+          Continuar <i class="fa-solid fa-arrow-right"></i>
+        </button>
+      </div>
+    </div>
+    <div class="form-link">Já tem conta? <a onclick="location.href='login.html'">Entrar</a></div>
+  </div>
+
+  <!-- STEP 2 -->
+  <div id="cad-s2" class="cad-page" style="display:none">
+    <div class="progress-bar">
+      <div class="pb-step">
+        <div class="pb-circle done"><i class="fa-solid fa-check"></i></div>
+        <div class="pb-label">Dados</div>
+      </div>
+      <div class="pb-line done"></div>
+      <div class="pb-step">
+        <div class="pb-circle curr">2</div>
+        <div class="pb-label curr">Serviços</div>
+      </div>
+      <div class="pb-line"></div>
+      <div class="pb-step">
+        <div class="pb-circle">3</div>
+        <div class="pb-label">Perfil</div>
+      </div>
+    </div>
+    <div class="form-card">
+      <div class="form-title">Quais serviços você oferece?</div>
+      <div class="form-sub">Selecione um ou mais serviços para o seu perfil</div>
+      <div class="form-group">
+        <label class="form-label">Categoria principal *</label>
+        <select class="form-select" id="f-categoria" onchange="updateSkillTags()">
+          <option value="">Selecione a categoria...</option>
+          <option>Pintura</option>
+          <option>Elétrica</option>
+          <option>Hidráulica</option>
+          <option>Ar-condicionado</option>
+          <option>Marcenaria</option>
+          <option>Limpeza</option>
+          <option>Jardinagem</option>
+          <option>Reformas em geral</option>
+          <option>Informática</option>
+          <option>Outro</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Especialidades</label>
+        <div class="skill-tags" id="skill-tags">
+          <div class="skill-tag" onclick="toggleSkill(this)">Pintura interna</div>
+          <div class="skill-tag" onclick="toggleSkill(this)">Pintura externa</div>
+          <div class="skill-tag" onclick="toggleSkill(this)">Textura</div>
+          <div class="skill-tag" onclick="toggleSkill(this)">Grafiato</div>
+          <div class="skill-tag" onclick="toggleSkill(this)">Marmorato</div>
+          <div class="skill-tag" onclick="toggleSkill(this)">Estêncil</div>
+          <div class="skill-tag" onclick="toggleSkill(this)">Reparo de paredes</div>
+          <div class="skill-tag" onclick="toggleSkill(this)">Fachada</div>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label class="form-label">Valor por hora (R$)</label>
+          <input type="number" class="form-input" placeholder="Ex: 80" id="f-preco" min="1" />
+        </div>
+        <div class="form-group">
+          <label class="form-label">Anos de experiência</label>
+          <input type="number" class="form-input" placeholder="Ex: 5" id="f-anos" min="0" />
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Raio de atendimento</label>
+        <select class="form-select">
+          <option>Até 10 km</option>
+          <option>Até 20 km</option>
+          <option selected>Até 30 km</option>
+          <option>Toda a cidade</option>
+        </select>
+      </div>
+      <div class="form-actions">
+        <button class="btn-back" onclick="goStep(1)"><i class="fa-solid fa-arrow-left"></i> Voltar</button>
+        <button class="btn-next" onclick="goStep(3)">Continuar <i class="fa-solid fa-arrow-right"></i></button>
+      </div>
+    </div>
+  </div>
+
+  <!-- STEP 3 -->
+  <div id="cad-s3" class="cad-page" style="display:none">
+    <div class="progress-bar">
+      <div class="pb-step">
+        <div class="pb-circle done"><i class="fa-solid fa-check"></i></div>
+        <div class="pb-label">Dados</div>
+      </div>
+      <div class="pb-line done"></div>
+      <div class="pb-step">
+        <div class="pb-circle done"><i class="fa-solid fa-check"></i></div>
+        <div class="pb-label">Serviços</div>
+      </div>
+      <div class="pb-line done"></div>
+      <div class="pb-step">
+        <div class="pb-circle curr">3</div>
+        <div class="pb-label curr">Perfil</div>
+      </div>
+    </div>
+    <div class="form-card">
+      <div class="form-title">Finalize seu perfil</div>
+      <div class="form-sub">Quanto mais completo, mais clientes você atrai</div>
+      <div class="form-group">
+        <label class="form-label">Sobre você</label>
+        <textarea class="form-textarea"
+          placeholder="Ex: Sou pintor com 8 anos de experiência, atendo residências e comércios em Brasília..."></textarea>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Foto de perfil (URL)</label>
+        <input type="url" class="form-input" placeholder="https://... (opcional)" />
+      </div>
+      <div class="form-group">
+        <label class="form-label">Disponibilidade</label>
+        <div class="skill-tags">
+          <div class="skill-tag sel" onclick="toggleSkill(this)">Seg — Sex</div>
+          <div class="skill-tag" onclick="toggleSkill(this)">Sábados</div>
+          <div class="skill-tag" onclick="toggleSkill(this)">Domingos</div>
+          <div class="skill-tag sel" onclick="toggleSkill(this)">Manhã</div>
+          <div class="skill-tag sel" onclick="toggleSkill(this)">Tarde</div>
+          <div class="skill-tag" onclick="toggleSkill(this)">Noite</div>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label class="form-label">Instagram (opcional)</label>
+          <input type="text" class="form-input" placeholder="@seu_usuario" />
+        </div>
+        <div class="form-group">
+          <label class="form-label">Site / portfólio (opcional)</label>
+          <input type="url" class="form-input" placeholder="https://..." />
+        </div>
+      </div>
+      <div class="form-actions">
+        <button class="btn-back" onclick="goStep(2)"><i class="fa-solid fa-arrow-left"></i> Voltar</button>
+        <button class="btn-next" onclick="goStep(4)"><i class="fa-solid fa-check"></i> Criar perfil</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- SUCCESS -->
+  <div id="cad-s4" class="success-page" style="display:none">
+    <div class="success-icon"><i class="fa-solid fa-check"></i></div>
+    <h3>Perfil criado com sucesso!</h3>
+    <p>Seu perfil já está visível para os clientes. Você receberá notificações quando alguém entrar em contato.</p>
+    <button class="btn-primary" onclick="location.href='index.html'">
+      <i class="fa-solid fa-house"></i> Ir para o início
+    </button>
+  </div>
+
+  <script src="script/script.js"></script>
+</body>
+
+</html>

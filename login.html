@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ProfiHub — Entrar</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link rel="stylesheet" href="style/style.css" />
+</head>
+
+<body>
+
+  <nav class="navbar">
+    <div class="logo" onclick="location.href='index.html'" style="cursor:pointer">
+      <img src="assets/logo.png" alt="ProfiHub"
+        onerror="this.replaceWith(Object.assign(document.createElement('span'),{textContent:'ProfiHub',style:'font-size:20px;font-weight:700;color:#2563eb'}))">
+    </div>
+    <div class="nav-links" id="nav-links">
+      <a href="index.html" class="nav-btn">Início</a>
+      <a href="busca.html" class="nav-btn">Buscar serviço</a>
+      <a href="cadastro.html" class="nav-btn">Seja um Pro</a>
+      <a href="login.html" class="nav-btn active">Entrar</a>
+    </div>
+    <button class="nav-cta" onclick="location.href='cadastro.html'">Cadastrar grátis</button>
+    <button class="nav-mobile-btn" onclick="toggleMenu()" aria-label="Menu">
+      <i class="fa-solid fa-bars" id="menu-icon"></i>
+    </button>
+  </nav>
+
+  <div class="toast" id="toast">
+    <i class="fa-solid fa-circle-check"></i>
+    <span id="toast-msg">Mensagem</span>
+  </div>
+
+  <div class="login-page">
+    <div class="login-card">
+      <div class="login-logo">
+        <p style="font-size:22px;font-weight:700;color:var(--primary)">ProfiHub</p>
+        <p style="font-size:14px;color:var(--gray-600);margin-top:6px;">Bem-vindo(a) de volta!</p>
+      </div>
+      <div class="login-tabs">
+        <button class="login-tab active" onclick="switchTab(this)">Sou cliente</button>
+        <button class="login-tab" onclick="switchTab(this)">Sou profissional</button>
+      </div>
+      <div class="form-group">
+        <label class="form-label">E-mail</label>
+        <input type="email" class="form-input" id="l-email" placeholder="seu@email.com" />
+      </div>
+      <div class="form-group">
+        <label class="form-label">Senha</label>
+        <input type="password" class="form-input" id="l-senha" placeholder="Sua senha" />
+      </div>
+      <div class="forgot-link"><a href="#">Esqueci minha senha</a></div>
+      <button class="btn-next" style="width:100%;padding:13px;font-size:15px;" onclick="doLogin()">
+        <i class="fa-solid fa-right-to-bracket"></i> Entrar
+      </button>
+      <div class="divider"><span>ou continue com</span></div>
+      <button class="btn-social" onclick="showToast('Em breve: login com Google!', '')">
+        <img src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg" width="18" height="18"
+          alt="Google" />
+        <p>Entrar com Google</p>
+      </button>
+      <div class="form-link" style="margin-top:22px;">
+        Não tem conta? <a onclick="location.href='cadastro.html'">Cadastre-se grátis</a>
+      </div>
+    </div>
+  </div>
+
+  <script src="script/script.js"></script>
+</body>
+
+</html>
